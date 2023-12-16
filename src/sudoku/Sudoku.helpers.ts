@@ -2,7 +2,7 @@ export const sudokuGenerate = () => {
 	// create borad 9x9
 	const board = Array(9)
 		.fill(".")
-		.map((x) => Array(9).fill("."));
+		.map((_) => Array(9).fill("."));
 
 	// genrate row with random number
 	board[0] = arrShuffle(
@@ -31,7 +31,7 @@ const removeRandomElements = (board: Array<Array<string>>, n: number) => {
 	).slice(0, n) as Array<number>;
 
 	for (let v of rowRandom) {
-		board[Math.floor(v / 9)][v % 9] = ".";
+		board[Math.floor(v / 9)][v % 9] = "";
 	}
 
 	return board;
