@@ -1,6 +1,6 @@
 export const sudokuGenerate = () => {
 	// create borad 9x9
-	const board = Array(9)
+	const board: string[][] = Array(9)
 		.fill(".")
 		.map((_) => Array(9).fill("."));
 
@@ -9,13 +9,15 @@ export const sudokuGenerate = () => {
 		Array(9)
 			.fill(null)
 			.map((_, i) => `${i + 1}`)
-	);
+	) as Array<string>;
 
 	// solve sudoku
 	sudokuSolve(board);
 
-	const boardToPlay = removeRandomElements(structuredClone(board), 15);
-	const boardSolved = board;
+	const boardToPlay = removeRandomElements(structuredClone(board), 15).flat(
+		Infinity
+	) as string[];
+	const boardSolved = board.flat(Infinity) as string[];
 
 	return {
 		boardToPlay,

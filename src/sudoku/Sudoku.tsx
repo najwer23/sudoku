@@ -1,13 +1,15 @@
+import { useState } from "react";
 import { sudokuGenerate } from "./Sudoku.helpers"
+import { SudokuBoard } from "./SudokuBoard";
 
 export const Sudoku = (): JSX.Element => {
 	const sudoku = sudokuGenerate();
 
-	console.log(sudoku)
+	const [board, setBoard] = useState<SudokuBoardFlatType>(sudoku.boardToPlay)
 
 	return (
 		<>
-			8
+			<SudokuBoard board={board} setBoard={setBoard} />
 		</>
 	)
 }
