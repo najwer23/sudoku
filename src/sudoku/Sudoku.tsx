@@ -32,7 +32,7 @@ export const Sudoku = (): JSX.Element => {
 			</ControlButton>
 			<SudokuBoard board={board} setBoard={setBoard} boardSolved={boardSolved} />
 
-			<TextWrapper><p>https://najwer23.github.io/sudoku</p></TextWrapper>
+			<TextWrapper><p>https://github.com/najwer23/sudoku</p></TextWrapper>
 		</>
 	)
 }
