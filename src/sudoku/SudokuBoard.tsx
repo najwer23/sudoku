@@ -27,7 +27,7 @@ export const SudokuBoard = ({ board, setBoard, boardSolved }: SudokuBoardType) =
 			</TextWrapper>
 
 			<BoardBox>
-				{(currentBoard == 1 ? board : boardSolved).map((value, index) => (
+				{(currentBoard === 1 ? board : boardSolved).map((value, index) => (
 					<BoardBoxItem key={"box-item" + index}>
 						{value === "" || value.includes("a") ?
 							<BoardBoxItemValue key={"box-value" + index} onClick={onClickBoardItem(index, String(number))}>
@@ -52,11 +52,11 @@ export const SudokuBoard = ({ board, setBoard, boardSolved }: SudokuBoardType) =
 			</BoardNumbers>
 
 			<TextWrapper>
-				<p>Check!</p>
+				<p>Controls!</p>
 			</TextWrapper>
 
 			<ControlButton onClick={onClickChangeBoard}>
-				{(currentBoard == 1 ? "Check" : "Play")}
+				{(currentBoard === 1 ? "Check" : "Play")}
 			</ControlButton>
 
 			<ControlButton onClick={onClickReset}>

@@ -1,4 +1,4 @@
-export const sudokuGenerate = () => {
+export const sudokuGenerate = (level: number) => {
 	// create borad 9x9
 	const board: string[][] = Array(9)
 		.fill(".")
@@ -14,9 +14,7 @@ export const sudokuGenerate = () => {
 	// solve sudoku
 	sudokuSolve(board);
 
-	const boardToPlay = removeRandomElements(structuredClone(board), 15).flat(
-		Infinity
-	) as string[];
+	const boardToPlay = removeRandomElements(structuredClone(board), level).flat(Infinity) as string[];
 	const boardSolved = board.flat(Infinity) as string[];
 
 	return {
