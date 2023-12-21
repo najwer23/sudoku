@@ -1,7 +1,6 @@
 
 # Mariusz Najwer - Sudoku
-[https://najwer23.github.io/sudoku/](https://najwer23.github.io/sudoku
-/)
+[https://najwer23.github.io/sudoku/](https://najwer23.github.io/sudoku)
 
 ## Self Update
 ```
