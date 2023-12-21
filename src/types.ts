@@ -1,5 +1,7 @@
 interface SudokuBoardType {
 	board: SudokuBoardFlatType;
+	boardSolved: SudokuBoardFlatType;
+
 	setBoard: (arg: SudokuBoardFlatType) => void;
 }
 

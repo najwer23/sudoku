@@ -1,15 +1,24 @@
 import { useState } from "react"
-import { BoardBox, BoardBoxItem, BoardBoxItemValue, BoardBoxItemValueGen, BoardNumber, BoardNumbers, TextWrapper } from "./SudokuBoard.styled"
+import { BoardBox, BoardBoxItem, BoardBoxItemValue, BoardBoxItemValueGen, BoardNumber, BoardNumbers, ControlButton, TextWrapper } from "./SudokuBoard.styled"
 
-export const SudokuBoard = ({ board, setBoard }: SudokuBoardType) => {
+export const SudokuBoard = ({ board, setBoard, boardSolved }: SudokuBoardType) => {
 	const [number, setNumber] = useState(1);
+	// 1 - board; 2 - boardSolved;
+	const [currentBoard, setCurrentBoard] = useState(1)
 
 	const onClickBoardItem = (index: number, value: string) => () => {
 		const newValue = board.map((v, i) => (i === index) ? "a" + value : v)
 		setBoard(newValue)
 	}
 
-	const onClikcBoardNumber = (n: number) => () => setNumber(n)
+	const onClikcBoardNumber = (n: number) => () => setNumber(n);
+
+	const onClickChangeBoard = () => setCurrentBoard(currentBoard - 1 > 0 ? 1 : 2);
+
+	const onClickReset = () => {
+		const newValue = board.map((v, i) => (v.includes("a")) ? "" : v)
+		setBoard(newValue)
+	}
 
 	return (
 		<>
@@ -18,11 +27,11 @@ export const SudokuBoard = ({ board, setBoard }: SudokuBoardType) => {
 			</TextWrapper>
 
 			<BoardBox>
-				{board.map((value, index) => (
+				{(currentBoard == 1 ? board : boardSolved).map((value, index) => (
 					<BoardBoxItem key={"box-item" + index}>
 						{value === "" || value.includes("a") ?
-							<BoardBoxItemValue key={"box-value" + index} onClick={onClickBoardItem(index, String(number))}
-							>{value.slice(1)}
+							<BoardBoxItemValue key={"box-value" + index} onClick={onClickBoardItem(index, String(number))}>
+								{value.match(/\d+/)?.pop()}
 							</BoardBoxItemValue> :
 							<BoardBoxItemValueGen key={"box-value" + index}>{value}</BoardBoxItemValueGen>
 						}
@@ -38,9 +47,21 @@ export const SudokuBoard = ({ board, setBoard }: SudokuBoardType) => {
 			<BoardNumbers>
 				{Array(9)
 					.fill(null)
-					.map((_, i) => <BoardNumber onClick={onClikcBoardNumber(i + 1)} $active={(i + 1) === number}>{i + 1}
+					.map((_, i) => <BoardNumber key={i} onClick={onClikcBoardNumber(i + 1)} $active={(i + 1) === number}>{i + 1}
 					</BoardNumber>)}
 			</BoardNumbers>
+
+			<TextWrapper>
+				<p>Check!</p>
+			</TextWrapper>
+
+			<ControlButton onClick={onClickChangeBoard}>
+				{(currentBoard == 1 ? "Check" : "Play")}
+			</ControlButton>
+
+			<ControlButton onClick={onClickReset}>
+				Reset
+			</ControlButton>
 
 		</>
 	)

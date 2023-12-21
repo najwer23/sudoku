@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const item = `calc(11.111111111% - 3.1111111px)`;
+const item = `calc(11.111111111% - 5px)`;
 
 export const BoardBox = styled.div`
 	width: 90%;
@@ -24,6 +24,25 @@ export const BoardBoxItem = styled.div`
 	&:nth-child(9n) {
 		width: calc(${item} + 2px);
 		border-right: 1px solid grey;
+	}
+
+	&:nth-child(9n + 1) {
+		border-left: 4px solid grey;
+	}
+
+	&:nth-child(3n) {
+		width: calc(${item} + 2px);
+		border-right: 4px solid grey;
+	}
+
+	&:nth-child(n + 19):nth-child(-n + 27),
+	&:nth-child(n + 46):nth-child(-n + 54),
+	&:nth-child(n + 73):nth-child(-n + 81) {
+		border-bottom: 4px solid grey;
+	}
+
+	&:nth-child(n):nth-child(-n + 9) {
+		border-top: 4px solid grey;
 	}
 
 	&:nth-last-child(-n + 9) {
@@ -56,6 +75,7 @@ export const BoardNumbers = styled.div`
 	gap: 5px;
 	margin: 10px;
 	flex-wrap: wrap;
+	max-width: 90%;
 `;
 
 export const TextWrapper = styled.div`
@@ -73,3 +93,11 @@ export const BoardNumber = styled.div<{ $active: boolean }>`
 	user-select: none; /* Standard syntax */
 	cursor: pointer;
 `;
+
+export const ControlButton = styled.button`
+	margin: 10px;
+	height: 50px;
+	width: 100px;
+	cursor: pointer;
+	margin-top: -5px;
+`
